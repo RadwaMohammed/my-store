@@ -4,6 +4,7 @@ export class Product {
   price: number;
   url: string;
   description: string;
+  quantity?: number;
 
   constructor() {
     // Initialize the properties
@@ -12,5 +13,6 @@ export class Product {
     this.price = 0;
     this.url = '';
     this.description = '';
+    this.quantity = 1;
   }
 }
