@@ -6,9 +6,11 @@
     class="select-input"
     name="quantity"
     value="{{ quantity }}"
+    [(ngModel)]="quantity"
+    (ngModelChange)="updateQuantity($event)"
   >
-    <option *ngFor="let i of quantityList" value="{{ i }}">
-      {{ i }}
+    <option *ngFor="let quantityVal of quantityList" value="{{ quantityVal }}">
+      {{ quantityVal }}
     </option>
   </select>
   <button class="product-btn">Add to Cart</button>
