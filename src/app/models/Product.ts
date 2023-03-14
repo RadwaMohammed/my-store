@@ -4,7 +4,7 @@ export class Product {
   price: number;
   url: string;
   description: string;
-  quantity?: number;
+  quantity: number;
 
   constructor() {
     // Initialize the properties

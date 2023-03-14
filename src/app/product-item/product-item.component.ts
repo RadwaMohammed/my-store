@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from './../models/Product';
+import { CartService } from './../services/cart.service';
 
 @Component({
   selector: 'app-product-item',
@@ -9,9 +10,9 @@ import { Product } from './../models/Product';
 export class ProductItemComponent implements OnInit {
   @Input() product: Product;
   quantityList: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  quantity: number = 1; // Default value is 1
+  quantity: string = '1'; // Default value is 1
 
-  constructor() {
+  constructor(private cartService: CartService) {
     // Initialize the product
     this.product = {
       id: 1,
@@ -29,7 +30,11 @@ export class ProductItemComponent implements OnInit {
   }
   // Update the quantity accourding to the user select option
   updateQuantity(event: Event): void {
-    this.quantity = event.target && +(event.target as HTMLSelectElement).value || this.quantity;
-    this.product.quantity = this.quantity;
+    this.quantity = event.target && (event.target as HTMLSelectElement).value || this.quantity;
+  }
+
+  // Adding a product to the cart
+  addProductToCart(): void {
+    this.cartService.addProduct(this.product, +this.quantity);
   }
 }
