@@ -30,5 +30,6 @@ export class ProductItemComponent implements OnInit {
   // Update the quantity accourding to the user select option
   updateQuantity(event: Event): void {
     this.quantity = event.target && +(event.target as HTMLSelectElement).value || this.quantity;
+    this.product.quantity = this.quantity;
   }
 }
