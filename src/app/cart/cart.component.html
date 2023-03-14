@@ -1,1 +1,23 @@
-<p>cart works!</p>
+<div>
+  <div *ngIf="!!products.length; else emptyCart">
+    <div *ngFor="let product of products">
+      <h3>{{ product.name }}</h3>
+      <a routerLink="/products/{{product.id}}">
+        <img src="{{ product.url }}" alt="{{ product.name }}" class="product-image">
+      </a>
+      <p>${{ product.price }}</p>
+      <input
+        type="number"
+        name="quantity"
+        id="{{product.id}}"
+        min="0"
+        (change)="updateQuantity($event)"
+        value="{{ product.quantity }}">
+    </div>
+    <p>${{total}}</p>
+  </div>
+</div>
+<ng-template #emptyCart>
+  <p>No products in your cart.<br>It is empty!!!</p>
+  <a routerLink="/" class="back-link">&lt;--- Back to products list</a>
+</ng-template>

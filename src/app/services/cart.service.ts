@@ -34,8 +34,8 @@ export class CartService {
   }
 
   //Get the total price
-  getTotal(): number {
-    return +this.cartList
+  getTotal(products: Product[]): number {
+    return +products
       .reduce((sum: number, product: Product) => (sum + (product.price * product.quantity)), 0)
       .toFixed(2)
   }
