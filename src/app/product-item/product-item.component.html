@@ -1,6 +1,8 @@
 <div class="product-container">
   <h3>{{ product.name }}</h3>
-  <img src="{{ product.url }}" alt="{{ product.name }}" class="product-image">
+  <a routerLink="/products/{{product.id}}">
+    <img src="{{ product.url }}" alt="{{ product.name }}" class="product-image">
+  </a>
   <p>{{ product.price }}</p>
   <select
     class="select-input"
