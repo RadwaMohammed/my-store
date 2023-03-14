@@ -7,13 +7,15 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
+import { ProductItemDetailComponent } from './product-item-detail/product-item-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     ProductItemComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProductItemDetailComponent
   ],
   imports: [
     BrowserModule,
