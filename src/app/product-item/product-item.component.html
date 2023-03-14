@@ -3,7 +3,7 @@
   <a routerLink="/products/{{product.id}}">
     <img src="{{ product.url }}" alt="{{ product.name }}" class="product-image">
   </a>
-  <p>{{ product.price }}</p>
+  <p>${{ product.price }}</p>
   <select
     class="select-input"
     name="quantity"

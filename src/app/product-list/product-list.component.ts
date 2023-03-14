@@ -19,7 +19,7 @@ export class ProductListComponent implements OnInit {
       for (let i = 0; i < res.length; i++) {
         const product = res[i];
         // Set the initiale value to 1
-        product["quantity"] = 1;
+        product['quantity'] = 1;
       }
       this.products = res;
     });
