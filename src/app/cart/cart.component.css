@@ -42,14 +42,19 @@ img {
   display: flex;
   justify-content: center;
   margin-top: 64px;
+  flex-direction: column;
 }
 
 .back-link {
   margin-top: 8px;
   text-decoration: none;
-  color: #2c9bc4;
+  color: #fff;
+  display: block;
+  background-color: #33B5E5;
+  padding: 10px;
+  text-align: center;
 }
 
 .back-link:hover {
-  text-decoration: underline;
+  background-color: #005bc7;
 }

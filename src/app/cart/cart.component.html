@@ -1,23 +1,102 @@
-<div>
+<div class="cart-container">
+  <!-- Products in cart list  -->
   <div *ngIf="!!products.length; else emptyCart">
-    <div *ngFor="let product of products">
-      <h3>{{ product.name }}</h3>
-      <a routerLink="/products/{{product.id}}">
-        <img src="{{ product.url }}" alt="{{ product.name }}" class="product-image">
-      </a>
-      <p>${{ product.price }}</p>
-      <input
-        type="number"
-        name="quantity"
-        id="{{product.id}}"
-        min="0"
-        (change)="updateQuantity($event)"
-        value="{{ product.quantity }}">
+    <div *ngFor="let product of products" class="cart-item">
+      <img src="{{ product.url }}" alt="{{ product.name }}" class="product-image">
+      <div class="cart-item-details">
+        <h3>{{ product.name }}</h3>
+        <p>${{ product.price }}</p>
+        <label for="{{product.id}}">Amount: </label>
+        <input
+          type="number"
+          name="quantity"
+          class="number-input "
+          id="{{product.id}}"
+          min="0"
+          (change)="updateQuantity($event)"
+          value="{{ product.quantity }}">
+        <button (click)="remove(product.id)">Delete</button>
+      </div>
     </div>
-    <p>${{total}}</p>
+    <p class="price">Total: ${{total}}</p>
+  </div>
+  <!-- User form  -->
+  <div class="cart-panel">
+    <form #form="ngForm" (ngSubmit)="submitForm()" class="form-margin">
+      <label for="fullName">Full Name</label>
+      <br>
+      <input
+        type="text"
+        id="fullName"
+        name="fullName"
+        placeholder="(minimum 3 characters)"
+        minlength="3"
+        [(ngModel)]="fullName"
+        #userFullName="ngModel"
+        required>
+      <br>
+      <label for="address">Address</label>
+      <br>
+      <input
+        type="text"
+        id="address"
+        name="address"
+        placeholder="(minimum 6 characters)"
+        minlength="6"
+        [(ngModel)]="address"
+        #userAddress="ngModel"
+        required>
+      <br>
+      <label for="cardNumber">Credit Card Number</label>
+      <br>
+      <input
+        type="text"
+        id="cardNumber"
+        name="cardNumber"
+        placeholder="(16-digit number)"
+        minlength="16"
+        maxlength="16"
+        [(ngModel)]="cardNumber"
+        #userCardNumber="ngModel"
+        required>
+      <br>
+      <p>We'll never share your payment details with anyone else.</p>
+      <button type="submit" [disabled]="form.invalid || !products.length">Submit</button>
+    </form>
+    <!-- Error messages for the user form-->
+    <div *ngIf="userFullName.invalid && userFullName.dirty">
+      <div *ngIf="userFullName.errors && userFullName.errors['required']">
+        Please provide your full name.
+      </div>
+      <div *ngIf="userFullName.errors && userFullName.errors['minlength']">
+        Full name should contains at least 3 characters.
+      </div>
+    </div>
+    <div *ngIf="userAddress.invalid && userAddress.dirty">
+      <div *ngIf="userAddress.errors && userAddress.errors['required']">
+        Please provide your address.
+      </div>
+      <div *ngIf="userAddress.errors && userAddress.errors['minlength']">
+        Address should contains at least 6 characters.
+      </div>
+    </div>
+    <div *ngIf="userCardNumber.invalid && userCardNumber.dirty">
+      <div *ngIf="userCardNumber.errors && userCardNumber.errors['required']">
+        Please provide your credit card number.
+      </div>
+      <div *ngIf="userCardNumber.errors && userCardNumber.errors['minlength']">
+        Credit card number should contains 16 characters.
+      </div>
+    </div>
+    <div *ngIf="!products.length">
+      There is no products in the cart!!!
+    </div>
   </div>
 </div>
+<!-- Display when no items in the cart -->
 <ng-template #emptyCart>
-  <p>No products in your cart.<br>It is empty!!!</p>
-  <a routerLink="/" class="back-link">&lt;--- Back to products list</a>
+  <div  class="empty-cart-message">
+    <p>No products in your cart.<br>It is empty!!!</p>
+    <a routerLink="/" class="back-link">Back to products list</a>
+  </div>
 </ng-template>
