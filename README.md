@@ -1,27 +1,35 @@
 # MyStoreApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.2.
+A full single-page ecommerce application with Angular.
 
-## Development server
+## Project features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+It reflects the user experience of an e-commerce website, including a(n):
+- Product list page, which displays the available products for the user to choose and add to their cart (in various quantities).
+- Product details page, which displays more information about any particular product.
+- Shopping cart, which includes the products that the user has added to their cart, and a checkout form, which collects information about the user (e.g., name, address, payment details, etc.)
+- Order confirmation page, which shows the outcome after the user completes the checkout process (i.e., submits the checkout form).
 
-## Code scaffolding
+## Getting Started
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Download or Clone the repository to your computer.
 
-## Build
+### Prerequisites and Local Development
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+> You should already have node.js, npm and angular CLI installed.
 
-## Running unit tests
+### Dependencies
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- [Node.js](https://nodejs.org/en)
+- [Angular CLI](https://angular.io/cli)
 
-## Running end-to-end tests
+### Install Dependencies
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Navigate to the project directory /my-store-app , open your terminal and run:
+```
+npm install
+```
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Start the server
+Run: ```ng serve```
+Server running at URL: ``` http://localhost:4200/```
