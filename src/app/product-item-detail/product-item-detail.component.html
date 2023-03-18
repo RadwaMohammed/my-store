@@ -3,7 +3,7 @@
     <img src="{{ product.url }}" alt="{{ product.name }}" class="product-image">
   </div>
   <div class="detail">
-    <h3>{{ product.name }}</h3>
+    <h3 class="product-name">{{ product.name }}</h3>
 
     <p class="detail-item">${{ product.price }}</p>
     <p class="detail-item">{{product.description}}</p>
@@ -19,7 +19,7 @@
       </option>
     </select>
     <button class="product-btn" (click)="addProductToCart()">Add to Cart</button><br>
-    <a routerLink="/" class="back-link">&lt;--- Back to products list</a>
+    <a routerLink="/" class="back-link">↞Back to products list</a>
   </div>
 </div>
 

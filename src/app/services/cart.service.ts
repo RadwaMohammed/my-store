@@ -39,7 +39,6 @@ export class CartService {
       product.quantity = quantity;
       this.cartList.push(product);
     }
-    console.log(this.cartList);
     // Update the cart count
     this.cartCount = this.getCartCount();
     return this.cartList;

@@ -14,5 +14,7 @@ export class ConfirmationComponent implements OnInit {
   ngOnInit(): void {
     this.fullName = this.cartService.fullName;
     this.totalPrice = this.cartService.totalPrice;
+    // Rese the cart counts as confirmation is done
+    this.cartService.cartCount = 0;
   }
 }

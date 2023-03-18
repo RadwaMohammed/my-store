@@ -38,7 +38,6 @@ export class ProductItemDetailComponent implements OnInit {
       // Add qunatity to Products.json as it doesn't have quantity in the product object
       this.product['quantity'] = 1;
     });
-    console.log(this.id)
   }
   // Update the quantity accourding to the user select option
   updateQuantity(event: Event): void {

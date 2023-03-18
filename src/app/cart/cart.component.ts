@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   total: number = 0;
   id: number = 0;
   quantity: number = 0;
+  count: number = 0;
 
   // Form items
   fullName: string = '';
@@ -50,5 +51,11 @@ export class CartComponent implements OnInit {
     this.cartService.fullName = this.fullName;
     this.cartService.totalPrice = this.total;
     this.router.navigateByUrl('/confirm-success')
+  }
+
+  // Get the count of products in the cart
+  getCount(): number {
+    this.count = this.cartService.cartCount;
+    return this.count;
   }
 }
