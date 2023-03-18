@@ -15,7 +15,7 @@ export class ProductItemComponent implements OnInit {
   constructor(private cartService: CartService) {
     // Initialize the product
     this.product = {
-      id: 1,
+      id: 0,
       name: '',
       price: 0,
       url: '',

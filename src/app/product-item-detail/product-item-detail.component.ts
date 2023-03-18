@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,  Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { CartService } from '../services/cart.service';
 import { Product } from '../models/Product';
@@ -14,7 +14,12 @@ export class ProductItemDetailComponent implements OnInit {
   quantityList: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   quantity: string = '1'; // Default value is 1
   id: string = '';
-  constructor(private productService: ProductService, private cartService: CartService, private route: ActivatedRoute) {
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     // Initialize the product
     this.product = {
       id: 0,
@@ -36,7 +41,7 @@ export class ProductItemDetailComponent implements OnInit {
       // Find product with id
       this.product = this.products.find((p: Product): boolean => p.id === +this.id) || this.product;
       // Add qunatity to Products.json as it doesn't have quantity in the product object
-      this.product['quantity'] = 1;
+      this.product.id ? this.product['quantity'] = 1 : this.router.navigateByUrl('/products');
     });
   }
   // Update the quantity accourding to the user select option
