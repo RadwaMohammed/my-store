@@ -1,0 +1,23 @@
+<div class="cart-item">
+  <a routerLink="/products/{{product.id}}">
+    <img src="{{ product.url }}" alt="{{ product.name }}" class="product-image">
+  </a>
+  <div class="cart-item-details">
+    <h3 class="product-name">{{ product.name }}</h3>
+    <p class="product-price">${{ product.price }}</p>
+    <label for="{{product.id}}">
+      Amount:
+      <input
+        type="number"
+        name="quantity"
+        id="{{product.id}}"
+        class="number-input "
+        min="0"
+        value="{{ product.quantity }}"
+        [(ngModel)]="quantity"
+        (ngModelChange)="updateQuantity($event)"
+      >
+    </label>
+    <button (click)="remove(product.id)" class="delete-btn">Delete</button>
+  </div>
+</div>

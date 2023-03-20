@@ -1,0 +1,17 @@
+ <!-- Products in cart list  -->
+ <div *ngIf="!!products.length; else emptyCart">
+  <app-product-cart-item
+    *ngFor="let product of products"
+    [product]="product"
+    (updateTotal)="updateTotal()"
+    (removeProduct)="removeProduct($event)"
+  ></app-product-cart-item>
+  <p class="price">Total: ${{total}}</p>
+</div>
+<!-- Display when no items in the cart -->
+<ng-template #emptyCart>
+  <div  class="empty-cart-message">
+    <p>No products in your cart.<br>It is empty!!!</p>
+    <a routerLink="/" class="back-link">Back to products list</a>
+  </div>
+</ng-template>

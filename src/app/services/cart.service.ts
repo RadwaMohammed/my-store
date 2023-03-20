@@ -67,9 +67,10 @@ export class CartService {
   }
 
   //Get the total price
-  getTotal(products: Product[]): number {
-    return +products
+  getTotal(): number {
+    this.totalPrice = +this.cartList
       .reduce((sum: number, product: Product) => (sum + (product.price * product.quantity)), 0)
-      .toFixed(2)
+      .toFixed(2);
+    return this.totalPrice;
   }
 }
