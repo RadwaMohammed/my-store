@@ -18,12 +18,13 @@ export class CartCheckOutComponent implements OnInit {
   constructor (private cartService: CartService, private router: Router) {}
   ngOnInit(): void {
     this.products = this.cartService.getCartList();
-
  }
+
  isCartListEmpty(): boolean {
   this.products = this.cartService.getCartList();
   return !this.products.length;
  }
+
   // Submit user form
   submitForm(): void {
     this.cartService.fullName = this.fullName;

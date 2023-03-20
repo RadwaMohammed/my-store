@@ -73,6 +73,9 @@ input[type=text]:focus {
 .error-msg {
   position: absolute;
   width: 90%;
+  height: 11%;
+  display: flex;
+  align-items: center;
   background-color: #fbeded;
   padding: 0.7em;
   color: #cb6c6c;

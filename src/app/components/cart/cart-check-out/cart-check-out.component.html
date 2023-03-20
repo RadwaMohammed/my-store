@@ -1,6 +1,6 @@
 <!-- User form  -->
 <div class="cart-panel">
-  <form #form="ngForm" (ngSubmit)="submitForm()">
+  <form #form="ngForm" (ngSubmit)="submitForm()" name="zz">
     <label for="fullName">Full Name</label>
     <br>
     <input
@@ -8,7 +8,6 @@
       id="fullName"
       name="fullName"
       placeholder="(minimum 3 characters)"
-      minlength="3"
       [(ngModel)]="fullName"
       #userFullName="ngModel"
       required>
@@ -20,7 +19,6 @@
       id="address"
       name="address"
       placeholder="(minimum 6 characters)"
-      minlength="6"
       [(ngModel)]="address"
       #userAddress="ngModel"
       required>
@@ -36,38 +34,52 @@
       maxlength="16"
       [(ngModel)]="cardNumber"
       #userCardNumber="ngModel"
+      pattern="^[0-9]*$"
       required>
     <br>
     <p class="note">We'll never share your payment details with anyone else.</p>
     <!-- Disable submit button if no products in the cart or if any of input field invalid -->
-    <button type="submit" [disabled]="form.invalid || !products.length || !getCount()" class="submit-btn">Submit</button>
+    <button
+      type="submit"
+      [disabled]="form.invalid
+        || !products.length
+        || !getCount()
+        || (userFullName.value || '').trim().length < 3
+        || (userAddress.value || '').trim().length < 6"
+      class="submit-btn">
+      Submit
+    </button>
   </form>
   <!-- Error messages for the user form-->
-  <div *ngIf="!products.length || !getCount()"  class="error-msg">
+  <div *ngIf="!products.length || !getCount() else validateForm"  class="error-msg">
     There is no products in the cart!!!
   </div>
-  <div *ngIf="userCardNumber.invalid && userCardNumber.dirty"  class="error-msg">
-    <div *ngIf="userCardNumber.errors && userCardNumber.errors['required']">
-      Please provide your credit card number.
+  <ng-template #validateForm>
+    <div *ngIf="userCardNumber.invalid && userCardNumber.dirty"  class="error-msg">
+      <div *ngIf="userCardNumber.errors && userCardNumber.errors['required']">
+        Please provide your credit card number.
+      </div>
+      <div
+        *ngIf="(userCardNumber.errors && userCardNumber.errors['minlength'])
+        || (userCardNumber.errors && userCardNumber.errors['pattern'])">
+        Credit card should contains 16 numbers, and accept only numbers.
+      </div>
     </div>
-    <div *ngIf="userCardNumber.errors && userCardNumber.errors['minlength']">
-      Credit card should contains 16 numbers.
+    <div *ngIf="userAddress.invalid && userAddress.touched" class="error-msg">
+      <div *ngIf="userAddress.errors && userAddress.errors['required']">
+        Please provide your address.
+      </div>
     </div>
-  </div>
-  <div *ngIf="userAddress.invalid && userAddress.dirty" class="error-msg">
-    <div *ngIf="userAddress.errors && userAddress.errors['required']">
-      Please provide your address.
-    </div>
-    <div *ngIf="userAddress.errors && userAddress.errors['minlength']">
+    <div *ngIf="userAddress.dirty && (userAddress.value || '').trim().length < 6" class="error-msg">
       Address should contains at least 6 characters.
     </div>
-  </div>
-  <div *ngIf="userFullName.invalid && userFullName.dirty" class="error-msg">
-    <div *ngIf="userFullName.errors && userFullName.errors['required']">
-      Please provide your full name.
+    <div *ngIf="userFullName.invalid && userFullName.touched" class="error-msg">
+      <div *ngIf="userFullName.errors && userFullName.errors['required']">
+        Please provide your full name.
+      </div>
     </div>
-    <div *ngIf="userFullName.errors && userFullName.errors['minlength']">
+    <div *ngIf="userFullName.dirty && (userFullName.value || '').trim().length < 3" class="error-msg">
       Full name should contains at least 3 characters.
     </div>
-  </div>
+  </ng-template>
 </div>
